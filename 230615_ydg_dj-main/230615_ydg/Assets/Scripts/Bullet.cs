@@ -7,7 +7,8 @@ public class Bullet : MonoBehaviour{
     [SerializeField] private int dmg;
 
 
-    public void InitBullet(int damage){
+    public void InitBullet(int damage)
+    {
         this.dmg = damage;
     }
 
@@ -15,19 +16,17 @@ public class Bullet : MonoBehaviour{
     private void Start()
     {
         Physics2D.IgnoreLayerCollision(6, 6);
+        Physics2D.IgnoreLayerCollision(7, 6);
     }
 
 
-    public void OnCollisionEnter2D(Collision2D col){
+    public void OnCollisionEnter2D(Collision2D col)
+    {
 
         if(col.collider.tag == "Enemy")
         {
             col.collider.gameObject.GetComponent<EnemyObject>().Hit(this.dmg);
             Destroy(this.gameObject);
         }
-
     }
-
-
-
 }
